@@ -1,3 +1,13 @@
+/* Général */
+
+body {
+  font-family: arial, serif;
+}
+
+.bg-grey {
+  background-color: #6B747D;
+}
+
 .display-none {
   display: none;
 }
@@ -14,11 +24,15 @@
   z-index: -1000;
 }
 
-/* titres */
-
-body {
-  font-family: arial, serif;
+:root {
+  --main-bg-color: #6B747D;
 }
+
+.main-bg-color, article {
+  background-color: var(--main-bg-color);
+}
+
+/* titres */
 
 h1 {
   font-size: 4rem;
@@ -33,6 +47,16 @@ h1 img {
   /* la taille de la lettre M à la racine */
   width: 4rem;
   /* 16px */
+}
+
+h2 {
+  font-size: 2rem;
+  margin: 20px 0;
+}
+
+h3 {
+  font-size: 1.6rem;
+  margin: 15px 0;
 }
 
 /* navigation */
@@ -51,7 +75,19 @@ nav ul li a {
   display: inline-block;
   text-decoration: none;
   color: white;
-  background-color: #6B747D;
   border-radius: 8px;
   margin: 0 15px;
+}
+
+/* les colonnes */
+
+.column {
+  float: left;
+  width: 23%;
+  margin: 0 1%;
+  background-color: whitesmoke;
+}
+
+.column>div {
+  padding: 20px;
 }
