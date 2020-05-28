@@ -1,54 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<title>Document</title>
+		<title>Test formulaire HTML5</title>
 	</head>
 	<body>
-		<header></header>
+		<header>
+			<h1>hôtel ibis</h1>
+		</header>
 		<main>
-			<form action="">
-				<fieldset>
-					<legend>Dates</legend>
-					<label for="arrival-date">Arrivée :
+			<section>
+				<h2>Réservation</h2>
+				<form action="">
+					<fieldset>
+						<legend>Dates</legend>
+						<label for="arrival-date">Arrivée :
+						</label>
+						<input type="date" id="arrival-date" name="arrival-date"><br/>
+
+
+						<label for="departure-date">Départ :
+						</label>
+						<input type="date" id="departure-date" name="departure-date">
+					</fieldset>
+					<p>L'hôtel propose des chambres jusqu'à 2 personnes avec au minimum 1 adulte.</p>
+
+					<label for="nb-rooms">Chambres :
 					</label>
-					<input type="date" id="arrival-date" name="arrival-date"><br/>
+					<select id="nb-rooms" name="nb-rooms">
+						<option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+					</select>
 
-
-					<label for="departure-date">Départ :
+					<label for="nb-adults">Adultes :
 					</label>
-					<input type="date" id="departure-date" name="departure-date">
-				</fieldset>
-				<p>L'hôtel propose des chambres jusqu'à 2 personnes avec au minimum 1 adulte.</p>
+					<select id="nb-adults" name="nb-adults">
+						<option value="1">1</option>
+						<option value="2">2</option>
 
-				<label for="nb-rooms">Chambres :
-				</label>
-				<select id="nb-rooms" name="nb-rooms">
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
-					<option value="5">5</option>
-					<option value="6">6</option>
-					<option value="7">7</option>
-				</select>
+					</select>
 
-				<label for="nb-adults">Adultes :
-				</label>
-				<select id="nb-adults" name="nb-adults">
-					<option value="1">1</option>
-					<option value="2">2</option>
-
-				</select>
-
-				<label for="nb-children">Enfants :
-				</label><input type="number" name="nb-children" id="nb-children" min="0" max="10" step="1">
-				<button type="submit">Envoyer</button>
+					<label for="nb-children">Enfants :
+					</label><input type="number" name="nb-children" id="nb-children" min="0" max="10" step="1">
+					<button type="submit">Envoyer</button>
 
 
-			</form>
+				</form>
+			</section>
 
 		</main>
 		<footer></footer>

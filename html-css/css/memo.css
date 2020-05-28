@@ -1,0 +1,57 @@
+.display-none {
+  display: none;
+}
+
+.sr-only {
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+  z-index: -1000;
+}
+
+/* titres */
+
+body {
+  font-family: arial, serif;
+}
+
+h1 {
+  font-size: 4rem;
+  text-align: center;
+  background-color: #6B747D;
+  color: white;
+  padding: 10px 0;
+}
+
+h1 img {
+  height: 4rem;
+  /* la taille de la lettre M à la racine */
+  width: 4rem;
+  /* 16px */
+}
+
+/* navigation */
+
+nav {
+  display: table;
+  margin: 10px auto;
+}
+
+nav ul li {
+  display: inline;
+}
+
+nav ul li a {
+  padding: 20px 20px;
+  display: inline-block;
+  text-decoration: none;
+  color: white;
+  background-color: #6B747D;
+  border-radius: 8px;
+  margin: 0 15px;
+}
