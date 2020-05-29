@@ -24,16 +24,6 @@ body {
   z-index: -1000;
 }
 
-.clear-fix {
-  clear: both;
-}
-
-.clear-fix-after:after {
-  clear: both;
-  content: "";
-  display: block;
-}
-
 :root {
   --main-bg-color: #6B747D;
 }
@@ -42,59 +32,82 @@ body {
   background-color: var(--main-bg-color);
 }
 
-/* titres */
+h2 {
+  font-size: 2rem;
+  margin: 20px 0;
+}
+
+h3 {
+  font-size: 1.6rem;
+  margin: 15px 0;
+}
+
+/* logo */
 
 h1 {
   font-size: 4rem;
-  text-align: center;
   background-color: #6B747D;
   color: white;
-  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 20px 0;
 }
 
 h1 img {
   height: 4rem;
-  /* la taille de la lettre M à la racine */
   width: 4rem;
-  /* 16px */
 }
 
-
-
-/* navigation */
-
-nav {
-  display: table;
-  margin: 10px auto;
+h1>div {
+  display: flex;
+  /* alignement sur l'axe secondaire (vertical par défaut) */
+  align-items: flex-start;
 }
 
-nav ul li {
-  display: inline;
+h1>div>div.top-char {
+  margin-top: -10px;
+}
+
+#emo {
+  position: relative;
+  top: 6px;
+}
+
+/* flex navigation */
+
+nav ul {
+  display: flex;
+  justify-content: center;
 }
 
 nav ul li a {
+  margin: 20px;
   padding: 20px 20px;
-  display: inline-block;
   text-decoration: none;
   color: white;
   border-radius: 8px;
-  margin: 0 15px;
   background-color: var(--main-bg-color);
+  display: block;
 }
 
-/* les colonnes */
+/* colonnes */
+
 #columns {
-  width: 100vw;
+  /* Le overflow fait en sorte que l'élément
+  ne s'agrandisse pas même si ses enfants
+  sont plus larges que lui */
   overflow-x: scroll;
 }
+
 #wrapper-columns {
+  display: flex;
+  justify-content: space-between;
   min-width: 400vw;
 }
+
 .column {
-  float: left;
-  width: 95vw;
-  margin: 0 2.5vw;
-  background-color: whitesmoke;
+  flex-basis: 99vw;
 }
 
 /* cartes */
@@ -121,15 +134,10 @@ footer {
 
 @media screen and (min-width: 768px) {
   /* les colonnes */
-  #columns {
-    width: auto;
-  }
   #wrapper-columns {
     min-width: auto;
   }
   .column {
-    float: left;
-    width: 23%;
-    margin: 0 1%;
+    flex-basis: 20%;
   }
 }
