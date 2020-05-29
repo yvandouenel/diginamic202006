@@ -93,7 +93,7 @@ nav ul li a {
 /* les colonnes */
 #columns {
   width: 100vw;
-  overflow-x: auto;
+  overflow-x: scroll;
 }
 #wrapper-columns {
   min-width: 400vw;
