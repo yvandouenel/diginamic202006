@@ -23,9 +23,11 @@ body {
   width: 1px;
   z-index: -1000;
 }
+
 .clear-fix {
   clear: both;
 }
+
 .clear-fix-after:after {
   clear: both;
   content: "";
@@ -36,7 +38,7 @@ body {
   --main-bg-color: #6B747D;
 }
 
-.main-bg-color, article {
+.main-bg-color {
   background-color: var(--main-bg-color);
 }
 
@@ -66,13 +68,7 @@ h3 {
   font-size: 1.6rem;
   margin: 15px 0;
 }
-/* cartes */
-.column article {
-  color: white;
-  padding: 20px;
-  border-radius: 8px;
-  margin: 0 0 30px 0;
-}
+
 /* navigation */
 
 nav {
@@ -95,20 +91,53 @@ nav ul li a {
 }
 
 /* les colonnes */
-
+#columns {
+  width: 100vw;
+  overflow-x: auto;
+}
+#wrapper-columns {
+  min-width: 400vw;
+}
 .column {
   float: left;
-  width: 23%;
-  margin: 0 1%;
+  width: 95vw;
+  margin: 0 2.5vw;
   background-color: whitesmoke;
 }
 
-.column>div {
+/* cartes */
+
+.column article {
+  color: white;
   padding: 20px;
+  border-radius: 8px;
+  margin: 0 0 30px 0;
+  background-color: var(--main-bg-color);
 }
+
 /* footer */
+
 footer {
   padding: 30px;
   color: white;
   text-align: center;
+}
+
+/* media queries */
+
+/* Pour des écrans plus grand que 768px */
+
+@media screen and (min-width: 768px) {
+  /* les colonnes */
+  #columns {
+    width: auto;
+  }
+  #wrapper-columns {
+    min-width: auto;
+  }
+  .column {
+    float: left;
+    width: 23%;
+    margin: 0 1%;
+  }
 }
