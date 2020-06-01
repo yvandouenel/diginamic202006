@@ -97,7 +97,10 @@ nav ul li a {
   /* Le overflow fait en sorte que l'élément
   ne s'agrandisse pas même si ses enfants
   sont plus larges que lui */
-  overflow-x: scroll;
+  overflow-x: auto;
+  margin: 0 15px;
+  /*Modification de la marge pour laisser de l'air, changement sur l'overflow pour 
+    que la barre disparaisse quand elle n'est pas nécéssaire */
 }
 
 #wrapper-columns {
