@@ -45,10 +45,6 @@ body {
   font-family: arial, serif;
 }
 
-.bg-grey {
-  background-color: #6B747D;
-}
-
 .display-none {
   display: none;
 }
@@ -111,13 +107,13 @@ h1 > div {
           align-items: flex-start;
 }
 
-h1 > div > div.top-char {
-  margin-top: -10px;
-}
-
-#emo {
+h1 > div #emo {
   position: relative;
   top: 6px;
+}
+
+h1 > div > div.top-char {
+  margin-top: -10px;
 }
 
 /* flex navigation */

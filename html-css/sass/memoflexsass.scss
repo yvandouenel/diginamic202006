@@ -1,77 +1,7 @@
 @import "./../css/reset";
 @import "./variables";
-
-/* Général */
-
-body {
-  font-family: arial, serif;
-}
-
-.bg-grey {
-  background-color: $primary-color;
-}
-
-.display-none {
-  display: none;
-}
-
-.sr-only {
-  clip: rect(1px, 1px, 1px, 1px);
-  height: 1px;
-  margin: 0;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  white-space: nowrap;
-  width: 1px;
-  z-index: -1000;
-}
-
-.main-bg-color {
-  background-color: $primary-color;
-}
-
-h2 {
-  font-size: 2rem;
-  margin: 20px 0;
-}
-
-h3 {
-  font-size: 1.6rem;
-  margin: 15px 0;
-}
-
-/* logo */
-
-h1 {
-  font-size: 4rem;
-  background-color: $primary-color;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  padding: 20px 0;
-}
-
-h1 img {
-  height: 4rem;
-  width: 4rem;
-}
-
-h1>div {
-  display: flex;
-  /* alignement sur l'axe secondaire (vertical par défaut) */
-  align-items: flex-start;
-}
-
-h1>div>div.top-char {
-  margin-top: -10px;
-}
-
-#emo {
-  position: relative;
-  top: 6px;
-}
+@import "./global";
+@import "./header";
 
 /* flex navigation */
 
