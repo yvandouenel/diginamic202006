@@ -1,0 +1,20 @@
+@charset "UTF-8";
+/* variables */
+/* Héritage */
+/* Mixin */
+/* Imbrication */
+body p {
+  color: blue;
+  /* @extend %bred; */
+  border: 10px solid red;
+  padding: 50px;
+}
+
+body p img {
+  border: 1px solid red;
+}
+
+body p a {
+  border: 1px solid black;
+}
+/*# sourceMappingURL=test.css.map */

@@ -1,0 +1,26 @@
+@import "variables";
+
+/* Héritage */
+%bred {
+  border: 1px solid red;
+}
+/* Mixin */
+@mixin bred($width) {
+    border: $width solid red;
+    padding: 50px;
+}
+
+/* Imbrication */
+body {
+  p {
+    color: $primary-color;
+    /* @extend %bred; */
+    @include bred(10px);
+    img {
+      border: 1px solid red;
+    }
+    a {
+      border: 1px solid black;
+    }
+  }
+}
