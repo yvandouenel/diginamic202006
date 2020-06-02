@@ -16,6 +16,12 @@ h1 {
     &#emo{
       position: relative;
       top: 6px;
+      > div {
+        border: 1px solid blue;
+        &.top-char {
+          border: 5px solid black;
+        }
+      }
     }
     /* alignement sur l'axe secondaire (vertical par défaut) */
     align-items: flex-start;

@@ -112,6 +112,14 @@ h1 > div#emo {
   top: 6px;
 }
 
+h1 > div#emo > div {
+  border: 1px solid blue;
+}
+
+h1 > div#emo > div.top-char {
+  border: 5px solid black;
+}
+
 h1 > div > div.top-char {
   margin-top: -10px;
 }
