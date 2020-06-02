@@ -1,0 +1,194 @@
+@charset "UTF-8";
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after, q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* colors */
+/* Général */
+body {
+  font-family: arial, serif;
+}
+
+.bg-grey {
+  background-color: #6B747D;
+}
+
+.display-none {
+  display: none;
+}
+
+.sr-only {
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+  z-index: -1000;
+}
+
+.main-bg-color {
+  background-color: #6B747D;
+}
+
+h2 {
+  font-size: 2rem;
+  margin: 20px 0;
+}
+
+h3 {
+  font-size: 1.6rem;
+  margin: 15px 0;
+}
+
+/* logo */
+h1 {
+  font-size: 4rem;
+  background-color: #6B747D;
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  padding: 20px 0;
+}
+
+h1 img {
+  height: 4rem;
+  width: 4rem;
+}
+
+h1 > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  /* alignement sur l'axe secondaire (vertical par défaut) */
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+h1 > div > div.top-char {
+  margin-top: -10px;
+}
+
+#emo {
+  position: relative;
+  top: 6px;
+}
+
+/* flex navigation */
+nav ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+nav ul li a {
+  margin: 20px;
+  padding: 20px 20px;
+  text-decoration: none;
+  color: white;
+  border-radius: 8px;
+  background-color: #6B747D;
+  display: block;
+}
+
+/* colonnes */
+#columns {
+  /* Le overflow fait en sorte que l'élément
+  ne s'agrandisse pas même si ses enfants
+  sont plus larges que lui */
+  overflow-x: scroll;
+}
+
+#wrapper-columns {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  min-width: 400vw;
+}
+
+.column {
+  -ms-flex-preferred-size: 99vw;
+      flex-basis: 99vw;
+}
+
+/* cartes */
+.column article {
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 0 0 30px 0;
+  background-color: #6B747D;
+}
+
+/* footer */
+footer {
+  padding: 30px;
+  color: white;
+  text-align: center;
+}
+
+/* media queries */
+/* Pour des écrans plus grand que 768px */
+@media screen and (min-width: 768px) {
+  /* les colonnes */
+  #wrapper-columns {
+    min-width: auto;
+  }
+  .column {
+    -ms-flex-preferred-size: 20%;
+        flex-basis: 20%;
+  }
+}
+/*# sourceMappingURL=memoflexsass.css.map */
