@@ -107,7 +107,7 @@ h1 > div {
           align-items: flex-start;
 }
 
-h1 > div #emo {
+h1 > div#emo {
   position: relative;
   top: 6px;
 }
