@@ -1,0 +1,32 @@
+/* Général */
+body {
+  font-family: arial, serif;
+}
+.display-none {
+  display: none;
+}
+.sr-only {
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+  z-index: -1000;
+}
+
+.main-bg-color {
+  background-color: $primary-color;
+}
+
+h2 {
+  font-size: 2rem;
+  margin: 20px 0;
+}
+
+h3 {
+  font-size: 1.6rem;
+  margin: 15px 0;
+}

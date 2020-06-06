@@ -1,0 +1,74 @@
+@import "./../css/reset";
+@import "./variables";
+@import "./global";
+@import "./header";
+
+/* flex navigation */
+
+nav ul {
+  display: flex;
+  justify-content: center;
+}
+
+nav ul li a {
+  margin: 20px;
+  padding: 20px 20px;
+  text-decoration: none;
+  color: white;
+  border-radius: 8px;
+  background-color: $primary-color;
+  display: block;
+}
+
+/* colonnes */
+
+#columns {
+  /* Le overflow fait en sorte que l'élément
+  ne s'agrandisse pas même si ses enfants
+  sont plus larges que lui */
+  overflow-x: scroll;
+}
+
+#wrapper-columns {
+  display: flex;
+  justify-content: space-between;
+  min-width: 400vw;
+}
+
+.column {
+  flex-basis: 99vw;
+}
+
+/* cartes */
+
+.column article {
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 0 0 30px 0;
+  background-color: $primary-color;
+}
+
+/* footer */
+
+footer {
+  padding: 30px;
+  color: white;
+  text-align: center;
+}
+
+/* media queries */
+
+/* Pour des écrans plus grand que 768px */
+
+@media screen and (min-width: 768px) {
+  /* les colonnes */
+  #wrapper-columns {
+    min-width: auto;
+  }
+  .column {
+    flex-basis: 20%;
+  }
+}
+
+

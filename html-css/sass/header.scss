@@ -1,0 +1,32 @@
+/* logo */
+h1 {
+  font-size: 4rem;
+  background-color: $primary-color;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 20px 0;
+  img {
+    height: 4rem;
+    width: 4rem;
+  }
+  > div {
+    display: flex;
+    &#emo{
+      position: relative;
+      top: 6px;
+      > div {
+        border: 1px solid blue;
+        &.top-char {
+          border: 5px solid black;
+        }
+      }
+    }
+    /* alignement sur l'axe secondaire (vertical par défaut) */
+    align-items: flex-start;
+    > div.top-char {
+    margin-top: -10px;
+    }
+  }
+}
