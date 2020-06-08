@@ -3,6 +3,8 @@
 (function() {
  // création d'une arrow function
  let msg = ""; 
+ 
+ 
  const helloLast = lastname => msg + " (nom de famille : " + lastname + ")";  
  // fonction qui renvoie une autre fonction (high order function)
  const helloFirst = firstname => {
@@ -11,7 +13,12 @@
     }; 
  console.log(helloFirst("Bob")("Dylan"));
 
-// fonction qui attend en paramètre une autre fonction (high order function)
+/**
+ * Exemple de "high order function" car elle attend une fonction 
+ * en argument
+ * @param  {string} toto
+ * @return {void}
+ */
 function test(toto) {
     console.log("type de toto : ", typeof(toto));
     toto(); // appel de la fonction passée en argument

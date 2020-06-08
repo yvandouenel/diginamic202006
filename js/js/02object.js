@@ -2,6 +2,11 @@
 // fonction anonyme immédiate IIFES qui permet d'isoler le code
 (function() {
  // déclaration de la fonction constructeur
+ /**
+  * Constructeur de Card
+  * @param {string} q 
+  * @param {string} a 
+  */
  function Card(q, a) {
     // les propriétés de l'objet
     this.question = q;
