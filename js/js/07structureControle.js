@@ -32,6 +32,10 @@
   for (let i = 0; i < personnages.length; i++) {
     console.log(personnages[i]);
   }
-  console.log("i = ", i);
+
+  Object.prototype.type = function(){
+    return typeof(this);
+  };
+  console.log(jc.type());
 })(); // appel de la fonction;
 
