@@ -31,8 +31,20 @@ class App extends Component {
   /**
    * Gestionnaire d'événement click pour ajout de carte
    */
-  handleClickAddCard(event) {
-    console.log('dans handleClickAddCard');
+  handleClickAddCard = (event, column_index) => {
+    console.log("dans handleClickAddCard");
+    // copie du state
+    const copy_state = { ...this.state };
+    console.log('this', this);
+    // Modification de la copie du state
+    copy_state.columns[column_index].cards.push({
+      id: 1,
+      question: "Quel est le nom de l'inventeur du web",
+      answer: "Tim Berners-Lee"
+    });
+
+    // Comparaison du nouveau et de l'ancien state
+    this.setState(copy_state);
   }
   render() {
     return (
@@ -43,11 +55,12 @@ class App extends Component {
         </header>
         <main className="container-fluid">
           <section className="row">
-            {this.state.columns.map((column) => (
-              <Column 
-              key={column.id} 
-              column={column}
-              onClickAddCard={this.handleClickAddCard}
+            {this.state.columns.map((column, index) => (
+              <Column
+                key={column.id}
+                column={column}
+                onClickAddCard={this.handleClickAddCard}
+                index={index}
               />
             ))}
           </section>
