@@ -2,8 +2,14 @@ import React from 'react';
 function FormAddCard(props) {
 
   function handleSubmit(event) {
-    console.log('dans handleSubmit de FormAddCard');
     event.preventDefault();
+    console.log('dans handleSubmit de FormAddCard');
+    // récupération des inputs
+    const question = event.target.querySelector("#inputquestion").value;
+    const answer = event.target.querySelector("#inputanswer").value;
+    
+    // appel de la fonction addCard qui se trouve dans App.js
+    props.addCard(question, answer, props.index);
   }
 
   return (

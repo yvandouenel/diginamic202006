@@ -25,6 +25,30 @@ class App extends Component {
     // d'ajouter une carte
     index_show_form_add_card: -1,
   };
+  addCard = (question, answer, index) => {
+    console.log('Dans addCard', question, answer, index);
+    console.log('lastCardId', this.getLastCardId());
+    // copie du state
+    const copy_state = { ... this.state};
+
+    // modification de la copie
+    copy_state.columns[index].cards.push({
+      id: this.getLastCardId(),
+      question: question,
+      answer: answer
+    });
+    copy_state.index_show_form_add_card = -1;
+
+    // Modification éventuelle du state
+    this.setState(copy_state);
+  }
+  getLastCardId() {
+    let last_id = 0;
+    for(let i = 0; i < this.state.columns.length; i++) {
+      last_id += this.state.columns[i].cards.length;
+    }
+    return last_id;
+  }
   /**
    * Gestionnaire d'événement
    */
@@ -50,7 +74,9 @@ class App extends Component {
           <div className="row">
             <div className="col">
               {this.state.index_show_form_add_card !== -1 && 
-              <FormAddCard index={this.state.index_show_form_add_card} />}
+              <FormAddCard 
+              addCard={this.addCard}
+              index={this.state.index_show_form_add_card} />}
             </div>
           </div>
 
