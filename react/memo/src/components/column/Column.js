@@ -5,18 +5,15 @@ const Column = (props) => {
   return (
     <section className="col">
       <div className="d-flex align-items-start">
-        <button
-          onClick={(event) => {
-            props.onClickAddCard(event, props.index);
-          }}
-          className="btn btn-success mr-2"
-        >
-          +
-        </button>
+        <button 
+        onClick={event => {
+          props.onClickAddCard(event);
+        }}
+        className="btn btn-success mr-2">+</button>
         <h2>{props.column.title}</h2>
       </div>
-      {props.column.cards.map((card, index) => (
-        <Card key={index} />
+      {props.column.cards.map((card) => (
+        <Card key={card.id} card={card} />
       ))}
     </section>
   );

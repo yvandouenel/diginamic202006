@@ -1,10 +1,9 @@
 import React from 'react';
-
 const Card = (props) => {
   return (
-    <article className="card">
-      <h3>Question</h3>
-      <h4>Réponse</h4>
+    <article>
+      <h3>{props.card.question}</h3>
+      <h4>{props.card.answer}</h4>
     </article>
   );
 }
