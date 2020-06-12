@@ -9,7 +9,11 @@ const Nav = (props) => {
       <ul className="list-unstyled d-flex justify-content-center">
         {props.terms.map((term) => (
           <li
+            id={term.id}
             key={term.id}
+            onClick={ (event) => {
+              props.onClickTerm(event, term.id);
+            }}
             className={`btn ${getBtnClass(term.selected)} m-2 p-2`}
           >
             {term.name}

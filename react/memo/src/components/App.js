@@ -10,11 +10,7 @@ class App extends Component {
     super(props);
     this.fetch_data = new FetchData("http://www.coopernet.fr/");
     this.state = {
-      terms: [
-        { id: 1, name: "Bootstrap", selected: false },
-        { id: 2, name: "CSS", selected: true },
-        { id: 3, name: "HTML", selected: false },
-      ],
+      terms: [],
       columns: [
         {
           id: 1,
@@ -71,6 +67,15 @@ class App extends Component {
   /**
    * Gestionnaire d'événement
    */
+  handleClickTerm = (event, term_id) => {
+    console.log('Dans handleClickTerm ', term_id);
+    // VA CHERCHER LES CARTES !!!!
+    this.fetch_data.getCards(
+      term_id, 
+      this.successGetCards,
+      this.failedGetCards);
+  }
+
   handleClickAddCard(index) {
     console.log("Dans handleClickAddCard");
     // copie du state
@@ -89,18 +94,35 @@ class App extends Component {
   failedGetToken(error) {
     console.log('Dans failedGetToken', error);
   }
-  successGetTerms(terms) {
+  successGetTerms = (terms) => {
     console.log('Dans successGetTerms : ', terms);
+    // copy du state 
+    const copy_state = { ... this.state};
+    copy_state.terms = terms;
+    this.setState(copy_state);
   }
   failedGetTerms(error) {
     console.log('Dans failedGetTerms', error);
+  }
+  successGetCards = (cards) => {
+    console.log('Dans successGetCards : ', cards);
+    // // copy du state 
+    // const copy_state = { ... this.state};
+    // copy_state.terms = terms;
+    // this.setState(copy_state);
+  }
+  failedGetCards(error) {
+    console.log('Dans failedGetCards', error);
   }
   render() {
     return (
       <div>
         <header>
           <h1 className="text-center">Memo</h1>
-          <Nav terms={this.state.terms} />
+          <Nav 
+          terms={this.state.terms} 
+          onClickTerm={this.handleClickTerm}
+          />
         </header>
         <main className="container-fluid">
           <div className="row">
