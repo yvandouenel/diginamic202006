@@ -2,29 +2,37 @@ import React, { Component } from "react";
 import Nav from "./nav/Nav";
 import Column from "./column/Column";
 import FormAddCard from "./FormAddCard";
+import FetchData from './../services/FetchData';
+
 
 class App extends Component {
-  state = {
-    terms: [
-      { id: 1, name: "Bootstrap", selected: false },
-      { id: 2, name: "CSS", selected: true },
-      { id: 3, name: "HTML", selected: false },
-    ],
-    columns: [
-      {
-        id: 1,
-        title: "A apprendre",
-        cards: [{ id: 1, question: "question", answer: "réponse" }],
-      },
-      { id: 2, title: "Je sais un peu", cards: [] },
-      { id: 3, title: "Je sais bien", cards: [] },
-      { id: 4, title: "Je sais parfaitement", cards: [] },
-    ],
-    // index_show_form_add_card permet de savoir dans quelle colonne
-    // on va ajouter une carte. -1 indique que l'on est pas en train
-    // d'ajouter une carte
-    index_show_form_add_card: -1,
-  };
+  constructor(props) {
+    super(props);
+    this.fetch_data = new FetchData("http://www.coopernet.fr/");
+    this.state = {
+      terms: [
+        { id: 1, name: "Bootstrap", selected: false },
+        { id: 2, name: "CSS", selected: true },
+        { id: 3, name: "HTML", selected: false },
+      ],
+      columns: [
+        {
+          id: 1,
+          title: "A apprendre",
+          cards: [{ id: 1, question: "question", answer: "réponse" }],
+        },
+        { id: 2, title: "Je sais un peu", cards: [] },
+        { id: 3, title: "Je sais bien", cards: [] },
+        { id: 4, title: "Je sais parfaitement", cards: [] },
+      ],
+      // index_show_form_add_card permet de savoir dans quelle colonne
+      // on va ajouter une carte. -1 indique que l'on est pas en train
+      // d'ajouter une carte
+      index_show_form_add_card: -1,
+    };
+    
+  }
+  
   addCard = (question, answer, index) => {
     console.log('Dans addCard', question, answer, index);
     console.log('lastCardId', this.getLastCardId());
@@ -49,6 +57,17 @@ class App extends Component {
     }
     return last_id;
   }
+  hideFormAddCard = () => {
+    console.log('Dans hideFormAddCard');
+    // copie du state
+    const copy_state = { ... this.state};
+
+    // modification de la copie
+    copy_state.index_show_form_add_card = -1;
+
+    // Modification éventuelle du state
+    this.setState(copy_state); 
+  }
   /**
    * Gestionnaire d'événement
    */
@@ -63,6 +82,19 @@ class App extends Component {
     // S'il y a une différence, la méthode render sera appelée
     this.setState(copy_state);
   }
+  successGetToken = (token) => {
+    console.log('Dans successGetToken : ', token);
+    this.fetch_data.getTerms(this.succcessGetTerms, this.failedGetTerms);
+  }
+  failedGetToken(error) {
+    console.log('Dans failedGetToken', error);
+  }
+  successGetTerms(terms) {
+    console.log('Dans successGetTerms : ', terms);
+  }
+  failedGetTerms(error) {
+    console.log('Dans failedGetTerms', error);
+  }
   render() {
     return (
       <div>
@@ -76,7 +108,9 @@ class App extends Component {
               {this.state.index_show_form_add_card !== -1 && 
               <FormAddCard 
               addCard={this.addCard}
-              index={this.state.index_show_form_add_card} />}
+              index={this.state.index_show_form_add_card} 
+              hideFormAddCard={this.hideFormAddCard}
+              />}
             </div>
           </div>
 
@@ -97,7 +131,9 @@ class App extends Component {
     );
   }
   componentDidMount() {
-    //console.log("this dans componentDidMount", this);
+    console.log("Dans componentDidMount");
+    // récupération du token
+    this.fetch_data.getToken(this.successGetToken,this.failedGetToken);
   }
 }
 
