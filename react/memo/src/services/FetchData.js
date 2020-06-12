@@ -35,7 +35,7 @@ class FetchData {
    * @param  {function} failed
    */
   getTerms = (success, failed) => {
-
+    console.log('Dans getTerms ');
     fetch(this.url + "memo/themes/" + this.uid, {
       credentials: "same-origin",
       method: "GET",
@@ -51,14 +51,12 @@ class FetchData {
         else throw new Error("Problème de réponse ", response);
       })
       .then((data) => {
-        console.log("data reçues dans geterms :", data);
-        if (data) {
-          success(data);
-        } else {
-          throw new Error("Problème de data ", data);
-        }
+        console.log("data reçues dans getTerms :", data);
+        success(data);
       })
       .catch((error) => {
+        console.log('error catché dans getTerms', error);
+        
         failed(error);
       });
   };

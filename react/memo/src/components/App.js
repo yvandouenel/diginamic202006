@@ -84,7 +84,7 @@ class App extends Component {
   }
   successGetToken = (token) => {
     console.log('Dans successGetToken : ', token);
-    this.fetch_data.getTerms(this.succcessGetTerms, this.failedGetTerms);
+    this.fetch_data.getTerms(this.successGetTerms, this.failedGetTerms);
   }
   failedGetToken(error) {
     console.log('Dans failedGetToken', error);
