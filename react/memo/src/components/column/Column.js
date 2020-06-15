@@ -9,9 +9,9 @@ const Column = (props) => {
         <button 
         onClick={props.onClickAddCard}
         className="btn btn-success mr-2">+</button>
-        <h2>{props.column.title}</h2>
+        <h2>{props.column.name}</h2>
       </div>
-      {props.column.cards.map((card, index) => (
+      {props.column.cartes.map((card, index) => (
         <Card key={index} card={card} />
       ))}
     </section>
