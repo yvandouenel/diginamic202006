@@ -27,32 +27,25 @@ class ResponseWriter {
       "08ddcc5675b44ea1f2c567010e544d25c47ca45a8392efc9ff693e471ebee936";
     const weatherApiUrl = `https://api.meteo-concept.com/api/forecast/daily?insee=${city}&token=${token}`;
     const headers = { Accept: "application/json" };
-
-    https
-      .get(
-        `https://api.meteo-concept.com/api/forecast/daily?insee=${city}&token=${token}`,
-        (apiResponse) => {
-          let data = "";
-
-          // A chunk of data has been recieved.
-          apiResponse.on("data", (chunk) => {
-            data += chunk;
-          });
-
-          // The whole response has been received. Print out the result.
-          apiResponse.on("end", () => {
-            const json = JSON.parse(data);
-            
-            //console.log(JSON.parse(data).explanation);
-            this.htmlSuccess(`
-              <h1>Météo à ${json.city.name}</h1>
-            `);
-          });
-        }
-      )
-      .on("error", (err) => {
-        console.log("Error: " + err.message);
+    https.get(weatherApiUrl, { headers }, (apiResponse) => {
+      let responseData = "";
+      apiResponse.on("data", (chunk) => {
+        responseData += chunk;
       });
+      apiResponse.on("end", () => {
+        const json = JSON.parse(responseData);
+        const tableRows = json.forecast
+          .map((f) => `<tr><td>${f.tmin}</td><td>${f.tmax}</td></tr>`)
+          .join("");
+        this.htmlSuccess(`
+                <h1>Météo à ${json.city.name}</h1>
+                <table>
+                  <tr><th>T° min</th><th>T° max</th></tr>
+                  ${tableRows}
+                </table>
+            `);
+      });
+    });
   }
   htmlSuccess(bodyContent) {
     this.res.writeHead(200, { "Content-Type": "text/html" });
