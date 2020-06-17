@@ -1,4 +1,6 @@
 const https = require("https");
+const fs = require('fs');
+const zlib = require('zlib');
 
 class ResponseWriter {
   constructor(res) {
@@ -36,7 +38,7 @@ class ResponseWriter {
         responseData += chunk; // renvoit un buffer (série d'octets)
         // la concaténation appelle la méthode toString. Ici ça se passe bien
         // parece qu'il n'y a pas de caractères spéciaux ou que c'est déjà dans l'UTF-8
-        console.log("chunk : " + chunk); 
+        console.log("chunk : " + chunk);
       });
       // on se branche sur les événements data ici : on a reçu toutes les données
       apiResponse.on("end", () => {
@@ -53,6 +55,16 @@ class ResponseWriter {
             `);
       });
     });
+  }
+  file(filename) {
+    this.res.writeHead(200, {
+      "Content-Type": "image/jpeg",
+      "Content-Encoding": "gzip",
+    });
+    const fileReadable = fs.createReadStream(__dirname + "/weather.jpg");
+    fileReadable.on("end", () => console.log("Lecture terminée"));
+    const gzipTransform = zlib.createGzip();
+    fileReadable.pipe(gzipTransform).pipe(this.res);
   }
   htmlSuccess(bodyContent) {
     this.res.writeHead(200, { "Content-Type": "text/html" });
