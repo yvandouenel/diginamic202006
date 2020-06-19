@@ -1,6 +1,6 @@
 const https = require("https");
-const fs = require('fs');
-const zlib = require('zlib');
+const fs = require("fs");
+const zlib = require("zlib");
 
 class ResponseWriter {
   constructor(res) {
@@ -8,6 +8,9 @@ class ResponseWriter {
   }
   index() {
     this.htmlSuccess(`<h1>Hello Bob</h1>
+    <form action="/weather" method="GET">
+      <input type="text" name="city">
+    </form>
     <p><img src="/weather.jpg" alt=""/></p>
     <p><a href="./hello">Heure du serveur ?</a></p>
     <p><a href="./weather">Météo à Mtp</a></p>
@@ -38,7 +41,7 @@ class ResponseWriter {
         responseData += chunk; // renvoit un buffer (série d'octets)
         // la concaténation appelle la méthode toString. Ici ça se passe bien
         // parece qu'il n'y a pas de caractères spéciaux ou que c'est déjà dans l'UTF-8
-        console.log("chunk : " + chunk);
+        //console.log("chunk : " + chunk);
       });
       // on se branche sur les événements data ici : on a reçu toutes les données
       apiResponse.on("end", () => {
@@ -47,6 +50,10 @@ class ResponseWriter {
           .map((f) => `<tr><td>${f.tmin}</td><td>${f.tmax}</td></tr>`)
           .join("");
         this.htmlSuccess(`
+                <form action="/weather" method="GET">
+                  <label for="city" >Code INSEE : </label><input type="text" name="city" id="city">
+                  <input type="submit" value="Envoyer">
+                  </form>
                 <h1>Météo à ${json.city.name}</h1>
                 <table>
                   <tr><th>T° min</th><th>T° max</th></tr>
