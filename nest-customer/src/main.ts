@@ -4,7 +4,7 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.enableCors(); //autorise les requêtes depuis un navigateur qui est connecté à un autre nome de domaine
+  //app.enableCors(); //autorise les requêtes depuis un navigateur qui est connecté à un autre nome de domaine
   // création de la doc de l'API REST
   const options = new DocumentBuilder()
     .setTitle('Nest Customers')
