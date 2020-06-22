@@ -7,14 +7,13 @@ import { Customer } from './customers/customer.entity';
 
 @Module({
   imports: [
-  
-  CustomersModule,
+    CustomersModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
       port: 5432,
       username: 'nest',
-      password: '',
+      password: '51biba95',
       database: 'nestdb',
       entities: [Customer],
       synchronize: true,
@@ -24,3 +23,4 @@ import { Customer } from './customers/customer.entity';
   providers: [AppService],
 })
 export class AppModule { }
+

@@ -1,5 +1,7 @@
-import { Controller, Get, Param, Post, Delete, Put } from '@nestjs/common';
+import { Controller, Get, Param, Post, Delete, Put, Body } from '@nestjs/common';
 import {CustomersService} from './customers.service';
+import { Customer } from './customer.entity';
+import { CustomerDto } from './customer.dto';
 
 @Controller('customers')
 export class CustomersController {
@@ -9,7 +11,7 @@ export class CustomersController {
   }
 
   @Get()
-  getList() {
+  getList(): Promise<Customer[]> { // renvoie une promesse de tableau de customer ou Promise<Array<Customer>>
     return this.customerDb.getList();
   }
 
@@ -18,8 +20,8 @@ export class CustomersController {
     return 'Renvoie un client';
   }
   @Post()
-  add() {
-    return 'Ajouter un client';
+  add(@Body() CustomerDto: CustomerDto): Promise<Customer> { //@Body : décorateur qui va parser le body de la requête et va renvoyer l'objet Customer Dto attendu
+    return this.customerDb.create(CustomerDto);
   }
   @Put(':id')
   update(@Param('id') id: string) {
@@ -30,3 +32,4 @@ export class CustomersController {
     return 'Supprimer un client par id';
   }
 }
+
