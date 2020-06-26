@@ -7,7 +7,9 @@ class Admin extends Component {
     return (
       <div>
         <Header path="/admin"/>
-        <h1>Dans l'admin</h1>
+        <main className="container">
+
+        </main>
       </div>
     );
   }
