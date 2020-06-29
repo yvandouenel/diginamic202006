@@ -1,6 +1,6 @@
 class FetchData {
     constructor() {
-        this.url = 'http://localhost:80/';
+        this.url = 'http://localhost:8000/';
         this.headers = {
             "Content-Type": "application/json",
             Authorization: "Basic " + btoa("admin:admin") // btoa = encodage en base 64
