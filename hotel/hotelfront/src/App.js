@@ -10,6 +10,7 @@ function App() {
     <div>
       <Switch>
         {/* de la route la plus spécifique à la plus générique */}
+        
         <Route path="/admin" component={Admin} />
         <Route path="/" component={Home} />
       </Switch>
