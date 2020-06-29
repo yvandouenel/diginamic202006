@@ -4,9 +4,11 @@ class Reservation extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            reservations: []
+            reservations: [],
+            error: false
         };
-        this.fd = new FetchData();
+        this.fd = new FetchData(); // Singleton
+
     }
     successReservation = (data) => {
         console.log('Dans successReservation');
@@ -19,16 +21,56 @@ class Reservation extends Component {
     }
     failedReservation = (error) => {
         console.log('Dans failedReservation ', error);
+        // copie du state
+        const copy_state = { ...this.state };
+        // Modification de la copie du state
+        copy_state.error = error;
+
+        this.setState(copy_state);
 
     }
     componentDidMount = () => {
         // Tentative de récupération des données
-        this.fd.getReservations(this.successReservation,this.failedReservation);
+        this.fd.getReservations(this.successReservation, this.failedReservation);
 
     }
     render() {
         return (
-            <h2>Réservation</h2>
+            <div className="col">
+                <h2>Réservation</h2>
+                {this.state.error && (
+                    <div>
+                        <h2>Erreur</h2>
+                        <p>Code de l'erreur : {this.state.error.message}</p>
+                        <p>Merci de contacter l'administrateur : admin@hotel.com</p>
+                    </div>
+                )}
+                <table className="table table-responsive-lg">
+                    <thead className="table-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Catégorie</th>
+                            <th>Date de début</th>
+                            <th>Date de fin</th>
+                            <th>Nb de personnes</th>
+                            <th>Nb de nuits</th>
+                        </tr>
+                    </thead>
+                    {this.state.reservations.map(reservation => {
+                        return (
+                            <tr key={reservation.id}>
+                                <td>{reservation.id}</td>
+                                <td>{reservation.categoryId}</td>
+                                <td>{reservation.startDate}</td>
+                                <td>{reservation.endDate}</td>
+                                <td>{reservation.data.persons}</td>
+                                <td>{reservation.data.nights}</td>
+                            </tr>
+                        )
+
+                    })}
+                </table>
+            </div>
         );
     }
 }
