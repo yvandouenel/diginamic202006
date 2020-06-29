@@ -29,9 +29,16 @@ class Reservation extends Component {
         this.setState(copy_state);
 
     }
-    componentDidMount = () => {
-        // Tentative de récupération des données
-        this.fd.getReservations(this.successReservation, this.failedReservation);
+    componentDidMount = async () => {
+        try {
+            const data = await this.fd.getReservations(); // il faut obligatoirement
+            // que getReservations retourne une promesse
+            console.log('data après le await : ', data);
+            this.successReservation(data);
+
+        } catch (error){
+            this.failedReservation(error);
+        }
 
     }
     render() {
@@ -40,8 +47,8 @@ class Reservation extends Component {
                 <h2>Réservation</h2>
                 {this.state.error && (
                     <div>
-                        <h2>Erreur</h2>
-                        <p>Code de l'erreur : {this.state.error.message}</p>
+                        <h2 className="text-danger">Erreur</h2>
+                        <p className="text-danger">Code de l'erreur : {this.state.error.message}</p>
                         <p>Merci de contacter l'administrateur : admin@hotel.com</p>
                     </div>
                 )}
@@ -56,6 +63,7 @@ class Reservation extends Component {
                             <th>Nb de nuits</th>
                         </tr>
                     </thead>
+                    <tbody>
                     {this.state.reservations.map(reservation => {
                         return (
                             <tr key={reservation.id}>
@@ -69,6 +77,7 @@ class Reservation extends Component {
                         )
 
                     })}
+                    </tbody>
                 </table>
             </div>
         );

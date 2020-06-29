@@ -1,14 +1,14 @@
 class FetchData {
     constructor() {
-        this.url = 'http://localhost:8000/';
+        this.url = 'http://localhost:80/';
         this.headers = {
             "Content-Type": "application/json",
             Authorization: "Basic " + btoa("admin:admin") // btoa = encodage en base 64
         };
         this.credentials = "same-origin";
     }
-    getReservations = (success, failed) => {
-        fetch(`${this.url}admin/reservations`, {
+    getReservations = () => {
+        return fetch(`${this.url}admin/reservations`, {
             credentials: this.credentials,
             method: "GET",
             headers: this.headers
@@ -20,9 +20,8 @@ class FetchData {
         })
             .then(function (data) {
                 console.log('data : ', data);// J'ai ma donnée au format json
-                success(data);
-            })
-            .catch(error => { failed(error) });
+                return data;
+            });
 
     }
 }
