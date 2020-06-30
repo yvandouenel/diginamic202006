@@ -7,7 +7,8 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      reservation: null,
+      error: null
     }
     this.fd = new FetchData();
   }
@@ -29,12 +30,36 @@ class Home extends Component {
     try {
       const reservation = await this.fd.postReservation(payload_reservation);
       console.log('reservation');
+      const copy_state = { ...this.state };
+      copy_state.reservation = reservation;
+      this.setState(copy_state);
     } catch (error) {
       console.log('Erreur : ', error);
     }
-
-
-
+  }
+  renderReservation = () => {
+    const { nights, persons, price } = this.state.reservation.data;
+    const { endDate, startDate } = this.state.reservation
+    return (
+      <table className="table">
+        <thead>
+          <th>Nuités</th>
+          <th>Nombre de personnes</th>
+          <th>Prix</th>
+          <th>Date de début</th>
+          <th>Date de fin</th>
+          <th></th>
+        </thead>
+        <tbody>
+          <td>{nights}</td>
+          <td>{persons}</td>
+          <td>{price}</td>
+          <td>{startDate}</td>
+          <td>{endDate}</td>
+          <td><button className="btn btn-danger">Supprimer</button></td>
+        </tbody>
+      </table>
+    )
   }
   render() {
     return (
@@ -50,19 +75,19 @@ class Home extends Component {
               <div id="wrapper-form">
                 <h2 className="">Réserver cet hôtel</h2>
                 <form onSubmit={this.handleSubmit} className="form-group" id="form-reservation">
-                  <label htmlFor="start-date" id="start-date">
+                  <label htmlFor="start-date" id="start-date-label">
                     Date d'arrivée :
                   <input required className="form-control" id="start-date" type="date" defaultValue={""} />
                   </label>
-                  <label htmlFor="end-date" id="end-date">
+                  <label htmlFor="end-date" id="end-date-label">
                     Date de départ :
                   <input required className="form-control" id="end-date" type="date" defaultValue={""} />
                   </label>
-                  <label htmlFor="nb-person" id="nb-person">
+                  <label htmlFor="nb-person" id="nb-person-label">
                     Nb de personnes :
                   <input required className="form-control" id="nb-person" type="number" min="1" max="3" />
                   </label>
-                  <label htmlFor="category" id="category">
+                  <label htmlFor="category" id="category-label">
                     <span>Catégorie de chambre :</span>
                     <select required id="category">
                       <option value="1">1 - Chambre simple</option>
@@ -87,6 +112,17 @@ class Home extends Component {
                 <li>Air Conditionné</li>
                 <li>+ 17 services</li>
               </ul>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col">
+              {this.state.reservation && (
+                <section>
+                  <h2>Votre réservation</h2>
+                  {this.renderReservation()}
+
+                </section>
+              )}
             </div>
           </div>
         </div>

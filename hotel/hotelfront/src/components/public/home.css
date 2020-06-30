@@ -23,17 +23,17 @@
   justify-content: space-between;
 }
 
-#form-reservation > #start-date,
-#form-reservation > #end-date {
+#form-reservation > #start-date-label,
+#form-reservation > #end-date-label {
   width: 48%;
   overflow: hidden;
 }
-#form-reservation > #category {
+#form-reservation > #category-label {
   display: flex;
   flex-direction: column;
   margin-left: 2%;
 }
-#form-reservation > #nb-person > input {
+#form-reservation > #nb-person-label > input {
   width: 50%;
 }
 #form-reservation #submit-reservation {
