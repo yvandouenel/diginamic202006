@@ -8,9 +8,25 @@ class Home extends Component {
     super(props);
     this.state = {
       reservation: null,
-      error: null
+      error: null,
+      deleted_reservation: null
     }
     this.fd = new FetchData();
+  } 
+  handleDeleteReservation = async (event) => {
+    console.log('Dans handleDeleteReservation');
+    try {
+      const deleted = await this.fd.deleteReservation(this.state.reservation.code);
+      console.log('reservation deleted : ', deleted);
+      const copy_state = { ... this.state };
+      copy_state.reservation = null;
+      copy_state.error = null;
+      copy_state.deleted_reservation = deleted;
+      this.setState(copy_state);
+
+    } catch (error) {
+
+    }
   }
   handleSubmit = async (event) => {
     console.log('Dans handleSubmit');
@@ -34,29 +50,44 @@ class Home extends Component {
       copy_state.reservation = reservation;
       this.setState(copy_state);
     } catch (error) {
-      console.log('Erreur : ', error);
+      console.log('Erreur dans le catch : ', error);
+      const copy_state = { ...this.state };
+      copy_state.error = error.message;
+      console.log('copy state', copy_state);
+      this.setState(copy_state);
     }
   }
-  renderReservation = () => {
-    const { nights, persons, price } = this.state.reservation.data;
-    const { endDate, startDate } = this.state.reservation
+  renderReservation = (deleted = false) => {
+    const { nights, persons, price } = deleted ? this.state.deleted_reservation.data : this.state.reservation.data;
+    const { endDate, startDate } = deleted ? this.state.deleted_reservation : this.state.reservation;
     return (
       <table className="table">
         <thead>
-          <th>Nuités</th>
-          <th>Nombre de personnes</th>
-          <th>Prix</th>
-          <th>Date de début</th>
-          <th>Date de fin</th>
-          <th></th>
+          <tr>
+            <th>Nuités</th>
+            <th>Nombre de personnes</th>
+            <th>Prix</th>
+            <th>Date de début</th>
+            <th>Date de fin</th>
+            <th></th>
+          </tr>
         </thead>
         <tbody>
-          <td>{nights}</td>
-          <td>{persons}</td>
-          <td>{price}</td>
-          <td>{startDate}</td>
-          <td>{endDate}</td>
-          <td><button className="btn btn-danger">Supprimer</button></td>
+          <tr>
+            <td>{nights}</td>
+            <td>{persons}</td>
+            <td>{price}</td>
+            <td>{startDate}</td>
+            <td>{endDate}</td>
+            <td>
+              {!deleted && (
+                <button
+                onClick={this.handleDeleteReservation}
+                className="btn btn-danger">Supprimer
+              </button>
+              )}
+            </td>
+          </tr>
         </tbody>
       </table>
     )
@@ -120,6 +151,20 @@ class Home extends Component {
                 <section>
                   <h2>Votre réservation</h2>
                   {this.renderReservation()}
+
+                </section>
+              )}
+              {this.state.error && (
+                <section>
+                  <h2>Erreur de réservation</h2>
+                  <h3 className="text-danger">{this.state.error}</h3>
+
+                </section>
+              )}
+              {this.state.deleted_reservation && (
+                <section>
+                  <h2 className="text-warning">Réservation supprimée : </h2>
+                  {this.renderReservation(true)}
 
                 </section>
               )}

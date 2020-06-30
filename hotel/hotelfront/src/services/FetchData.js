@@ -45,8 +45,28 @@ class FetchData {
           }
         }
       })
-    }).then(function (response) {
+    }).then(async function (response) {
       if (response.status !== 201) {
+        console.log('response en cas d\'erreur du serveur : ', response);
+        
+        throw await response.json();
+      }
+      return response.json(); // teste si c'est bien du json
+    })
+      .then(function (data) {
+        console.log('data : ', data);// J'ai ma donnée au format json
+        return data;
+      });
+  }
+  deleteReservation = (code) => {
+    console.log('Dans deleteReservation, ', code);
+    return fetch(`${this.url}booking/${code}`, {
+      method: "DELETE",
+      headers: this.headers
+    }
+    ).then(function (response) {
+      if (response.status !== 200) {
+        console.log('response en cas d\'erreur du serveur : ', response);
         throw new Error("Erreur " + response.status);
       }
       return response.json();// teste si c'est bien du json
