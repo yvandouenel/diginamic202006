@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Header from '../common/Header';
 import FetchData from '../../services/FetchData';
+import './home.css';
 
 class Home extends Component {
   constructor(props) {
@@ -40,33 +41,52 @@ class Home extends Component {
       <div>
         <Header path="/" />
         <div className="container">
-          <div className="row">
-            <div className="col">
-              <h2>Réservation</h2>
-              <form onSubmit={this.handleSubmit} className="form-group">
-                <label htmlFor="start-date">
-                  Date d'arrivée :
+          <div className="row headband">
+            <div className="col-md-8">
+
+            </div>
+
+            <div className="col-md-4">
+              <div id="wrapper-form">
+                <h2 className="">Réserver cet hôtel</h2>
+                <form onSubmit={this.handleSubmit} className="form-group" id="form-reservation">
+                  <label htmlFor="start-date" id="start-date">
+                    Date d'arrivée :
                   <input required className="form-control" id="start-date" type="date" defaultValue={""} />
-                </label>
-                <label htmlFor="end-date">
-                  Date de départ :
+                  </label>
+                  <label htmlFor="end-date" id="end-date">
+                    Date de départ :
                   <input required className="form-control" id="end-date" type="date" defaultValue={""} />
-                </label>
-                <label htmlFor="nb-person">
-                  Nombre de personnes :
+                  </label>
+                  <label htmlFor="nb-person" id="nb-person">
+                    Nb de personnes :
                   <input required className="form-control" id="nb-person" type="number" min="1" max="3" />
-                </label>
-                <label htmlFor="category">
-                  Catégorie de chambre :
-                  <select required id="category">
-                    <option value="1">1 - Chambre simple</option>
-                    <option value="2">2 - Chambre double</option>
-                    <option value="3">3 - Chambre double - lits séparés</option>
-                    <option value="4">4 - Chambre triple - 1 lit double - 1 lit simple</option>
-                  </select>
-                </label>
-                <input type="submit" value="Envoyer" />
-              </form>
+                  </label>
+                  <label htmlFor="category" id="category">
+                    <span>Catégorie de chambre :</span>
+                    <select required id="category">
+                      <option value="1">1 - Chambre simple</option>
+                      <option value="2">2 - Chambre double</option>
+                      <option value="3">3 - Chambre double </option>
+                      <option value="4">4 - Chambre triple</option>
+                    </select>
+                  </label>
+                  <input className="bg-dark text-light btn" type="submit" value="Réserver" id="submit-reservation" />
+                </form>
+              </div>
+            </div>
+          </div>
+          <div className="row bg-dark">
+            <div className="col-12 text-light">
+              <ul className="list-unstyled d-flex" id="list-services">
+                <li>Parking</li>
+                <li>WIFI/Accès Internet</li>
+                <li>Petit-Déjeuner</li>
+                <li>Bar</li>
+                <li>Restaurant</li>
+                <li>Air Conditionné</li>
+                <li>+ 17 services</li>
+              </ul>
             </div>
           </div>
         </div>

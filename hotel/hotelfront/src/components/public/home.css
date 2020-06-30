@@ -1,0 +1,44 @@
+.headband {
+  background: url(/bandeau.jpg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+  min-height: 300px;
+  margin-top: 30px;
+}
+#wrapper-form {
+  position: relative;
+  top: 100px;
+  padding: 15px;
+  
+  right: -15px;
+  background-color: white;
+  box-shadow: 3px 3px 3px grey;
+  border-radius: 6px;
+}
+#form-reservation {
+  display: flex;
+  flex-wrap: wrap;
+  height: 200px;
+  justify-content: space-between;
+}
+
+#form-reservation > #start-date,
+#form-reservation > #end-date {
+  width: 48%;
+  overflow: hidden;
+}
+#form-reservation > #category {
+  display: flex;
+  flex-direction: column;
+  margin-left: 2%;
+}
+#form-reservation > #nb-person > input {
+  width: 50%;
+}
+#form-reservation #submit-reservation {
+ z-index: 1;
+}
+#list-services li {
+  margin: 10px 20px 0 0;
+}
