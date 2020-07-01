@@ -36,10 +36,31 @@ class Reservation extends Component {
             console.log('data après le await : ', data);
             this.successReservation(data);
 
-        } catch (error){
+        } catch (error) {
             this.failedReservation(error);
         }
 
+    }
+    handleClickDelete = async (e, reservation) => {
+        console.log('Dans handleClickDelete : ', reservation);
+        try {
+            const deleted = await this.fd.deleteReservation(reservation.code);
+            const copy_state = { ... this.state };
+            // On retrouve la réservation dans le tableau reservations
+            const index_reservation = copy_state.reservations.indexOf(reservation);
+            copy_state.reservations.splice(index_reservation, 1);
+            copy_state.error = null;
+
+            this.setState(copy_state);
+
+        } catch (error) {
+            console.log('Erreur attrapée dans handleClickDelete : ', error);
+            const copy_state = { ... this.state };
+            // On retrouve la réservation dans le tableau reservations
+            copy_state.error = error;
+
+            this.setState(copy_state);
+        }
     }
     render() {
         return (
@@ -61,22 +82,30 @@ class Reservation extends Component {
                             <th>Date de fin</th>
                             <th>Nb de personnes</th>
                             <th>Nb de nuits</th>
+                            <th>Suppression</th>
                         </tr>
                     </thead>
                     <tbody>
-                    {this.state.reservations.map(reservation => {
-                        return (
-                            <tr key={reservation.id}>
-                                <td>{reservation.id}</td>
-                                <td>{reservation.categoryId}</td>
-                                <td>{reservation.startDate}</td>
-                                <td>{reservation.endDate}</td>
-                                <td>{reservation.data.persons}</td>
-                                <td>{reservation.data.nights}</td>
-                            </tr>
-                        )
+                        {this.state.reservations.map(reservation => {
+                            return (
+                                <tr key={reservation.id}>
+                                    <td>{reservation.id}</td>
+                                    <td>{reservation.categoryId}</td>
+                                    <td>{reservation.startDate}</td>
+                                    <td>{reservation.endDate}</td>
+                                    <td>{reservation.data.persons}</td>
+                                    <td>{reservation.data.nights}</td>
+                                    <td>
+                                        <button
+                                            onClick={(e) => { this.handleClickDelete(e, reservation) }}
+                                            className="btn btn-danger">
+                                            Supprimer
+                                    </button>
+                                    </td>
+                                </tr>
+                            )
 
-                    })}
+                        })}
                     </tbody>
                 </table>
             </div>
